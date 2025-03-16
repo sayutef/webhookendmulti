@@ -21,6 +21,7 @@ class FCM {
 module.exports = FCM;
 
 
+
 // Método para enviar una notificación a un usuario específico utilizando su token.
 // Recibe el 'token' del dispositivo del usuario y el 'message' que contiene la notificación.
 // async sendToUser(token, message) {
