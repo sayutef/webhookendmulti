@@ -34,12 +34,12 @@ func sendNotification(token string, title string, body string) error {
             Body:  body,
         },
     }
-
+    // Convierte el mensaje a formato JSON utilizando json.Marshal
     jsonMessage, err := json.Marshal(message)
-    if err != nil {
+    if err != nil { // Si ocurre un error al convertir el mensaje a JSON, lo devuelve
         return err
     }
-
+    // Crea una nueva solicitud HTTP POST hacia la URL de FCM
     req, err := http.NewRequest("POST", fcmURL, bytes.NewBuffer(jsonMessage))
     if err != nil {
         return err
@@ -62,6 +62,7 @@ func sendNotification(token string, title string, body string) error {
     return nil
 }
 
+
 // Función comentada para obtener información sobre un dispositivo registrado
 /*
 func getDeviceInfo(deviceToken string) (map[string]interface{}, error) {
@@ -72,6 +73,30 @@ func getDeviceInfo(deviceToken string) (map[string]interface{}, error) {
     req, err := http.NewRequest("GET", deviceInfoURL, nil)
     if err != nil {
         return nil, fmt.Errorf("error al crear la solicitud: %v", err)
+=======
+
+
+
+// Función comentada para registrar un dispositivo en Firebase
+/*
+func registerDevice(deviceToken string) error {
+    // Definir el URL de registro del dispositivo en Firebase
+    registerURL := "https://fcm.googleapis.com/v1/projects/my-project-id/registrationTokens/" + deviceToken
+
+    // Crear el cuerpo de la solicitud de registro
+    requestBody := map[string]string{
+        "token": deviceToken,
+    }
+    jsonBody, err := json.Marshal(requestBody)
+    if err != nil {
+        return fmt.Errorf("error al convertir el cuerpo de la solicitud a JSON: %v", err)
+    }
+
+    // Realizar la solicitud HTTP para registrar el dispositivo
+    req, err := http.NewRequest("POST", registerURL, bytes.NewBuffer(jsonBody))
+    if err != nil {
+        return fmt.Errorf("error al crear la solicitud: %v", err)
+
     }
 
     // Configurar los encabezados de la solicitud
@@ -81,6 +106,7 @@ func getDeviceInfo(deviceToken string) (map[string]interface{}, error) {
     client := &http.Client{}
     resp, err := client.Do(req)
     if err != nil {
+
         return nil, fmt.Errorf("error al enviar la solicitud: %v", err)
     }
     defer resp.Body.Close()
@@ -101,3 +127,4 @@ func getDeviceInfo(deviceToken string) (map[string]interface{}, error) {
     return deviceInfo, nil
 }
 */
+
