@@ -62,3 +62,42 @@ func sendNotification(token string, title string, body string) error {
     return nil
 }
 
+// Función comentada para obtener información sobre un dispositivo registrado
+/*
+func getDeviceInfo(deviceToken string) (map[string]interface{}, error) {
+    // URL de la API de Firebase para obtener información del dispositivo
+    deviceInfoURL := "https://fcm.googleapis.com/v1/projects/my-project-id/devices/" + deviceToken
+
+    // Crear la solicitud GET para obtener la información del dispositivo
+    req, err := http.NewRequest("GET", deviceInfoURL, nil)
+    if err != nil {
+        return nil, fmt.Errorf("error al crear la solicitud: %v", err)
+    }
+
+    // Configurar los encabezados de la solicitud
+    req.Header.Set("Content-Type", "application/json")
+    req.Header.Set("Authorization", "key="+os.Getenv("SERVER_KEY"))
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        return nil, fmt.Errorf("error al enviar la solicitud: %v", err)
+    }
+    defer resp.Body.Close()
+
+    // Comprobar si la respuesta fue exitosa
+    if resp.StatusCode != http.StatusOK {
+        return nil, fmt.Errorf("error en la solicitud: %v", resp.Status)
+    }
+
+    // Decodificar la respuesta JSON en un mapa de datos
+    var deviceInfo map[string]interface{}
+    decoder := json.NewDecoder(resp.Body)
+    err = decoder.Decode(&deviceInfo)
+    if err != nil {
+        return nil, fmt.Errorf("error al decodificar la respuesta JSON: %v", err)
+    }
+
+    return deviceInfo, nil
+}
+*/
