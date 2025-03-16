@@ -34,12 +34,12 @@ func sendNotification(token string, title string, body string) error {
             Body:  body,
         },
     }
-
+    // Convierte el mensaje a formato JSON utilizando json.Marshal
     jsonMessage, err := json.Marshal(message)
-    if err != nil {
+    if err != nil { // Si ocurre un error al convertir el mensaje a JSON, lo devuelve
         return err
     }
-
+    // Crea una nueva solicitud HTTP POST hacia la URL de FCM
     req, err := http.NewRequest("POST", fcmURL, bytes.NewBuffer(jsonMessage))
     if err != nil {
         return err
@@ -61,6 +61,7 @@ func sendNotification(token string, title string, body string) error {
 
     return nil
 }
+
 
 
 
@@ -103,3 +104,4 @@ func registerDevice(deviceToken string) error {
     return nil
 }
 */
+
